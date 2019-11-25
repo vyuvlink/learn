@@ -1,4 +1,4 @@
-##Web标准
+#Web标准
 
 WEB标准不是某一个标准，而是一系列标准的集合。
 
@@ -18,7 +18,7 @@ WEB标准不是某一个标准，而是一系列标准的集合。
 
 3.行为（Behavior）行为是指页面和用户具有一定的交互，同时页面结构或者表现发生变化，标准主要包括对象模型（如W3C DOM）、ECMAScript并要求这三部分分离。①DOMDOM是Document Object Model文档对象模型的缩写。DOM是一种与浏览器，平台，语言的接口，使得你可以访问页面其他的标准组件。简单理解，DOM解决了Netscaped的Javascript和Microsoft的Jscript之间的冲突，给予web设计师和开发者一个标准的方法，让他们来访问他们站点中的数据、脚本和表现层对像。②ECMAScriptECMAScript是ECMA(EuropeanComputer Manufacturers Association)制定的标准脚本语言（JAVAScript）
 
-##W3C规范
+#W3C规范
 
 W3C对web标准提出了规范化的要求，也就是在实际编程中的一些代码规范
 
@@ -38,18 +38,18 @@ W3C对web标准提出了规范化的要求，也就是在实际编程中的一�
 
 3）不需要变动页面内容，便可提供打印版本而不需要复制内容，提高网站易用性。
 
-##浏览器渲染
+#浏览器渲染
 
-##浏览器内存分配
+#浏览器内存分配
 
 内存分配一般会比桌面应用少
 
-##盒模型
+#盒模型
 
 IE盒子 box-sizing: border-box; w = p + b + w
 w3c box-sizing: content-box;  w = w
 
-##dispaly: inline,block,inline-block区别
+#dispaly: inline,block,inline-block区别
 
 inline行内:w与h设置无效
 
@@ -61,13 +61,13 @@ block块状:w与h有效,但w只会影响其显示,block占满一行的属性还�
 
 inline-block行内块:w与h有效
 
-##FOUC
+#FOUC
 
 无样式内容的闪存(Flash Of Unstyled Content)：用户定义样式表加载之前浏览器使用默认样式显示文档，用户样式加载渲染之后再从新显示文档，造成页面闪烁。
 
 解决方法：把样式表放到文档的head
 
-##FC布局
+#FC布局
 
 What‘s FC？一定不是KFC，FC的全称是：Formatting Contexts，是W3C CSS2.1规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。
 
@@ -79,7 +79,7 @@ GFC(GridLayout Formatting Contexts)直译为"网格布局格式化上下文"，�
 
 FFC(Flex Formatting Contexts)直译为"自适应格式化上下文"，display值为flex或者inline-flex的元素将会生成自适应容器（flex container），可惜这个牛逼的属性只有谷歌和火狐支持，不过在移动端也足够了，至少safari和chrome还是OK的，毕竟这俩在移动端才是王道。Flex Box 由伸缩容器和伸缩项目组成。通过设置元素的 display 属性为 flex 或 inline-flex 可以得到一个伸缩容器。设置为 flex 的容器被渲染为一个块级元素，而设置为 inline-flex 的容器则渲染为一个行内元素。伸缩容器中的每一个子元素都是一个伸缩项目。伸缩项目可以是任意数量的。伸缩容器外和伸缩项目内的一切元素都不受影响。简单地说，Flexbox 定义了伸缩容器内伸缩项目该如何布局。
 
-##var,let,const区别
+#var,let,const区别
 
 声明const或者let的变量存在于构造func的[[Scopes]]中,而var声明的变量会存在于window中
 
@@ -93,7 +93,7 @@ var声明一个变量时，创建的这个属性是不可配置的，也就是�
 
 var没有块级作用域,可以跨块访问,但是不能跨函数访问。let,const有块级作用域({}即块级作用域)
 
-##重绘(Repaint)与回流(Reflow)
+#重绘(Repaint)与回流(Reflow)
 
 重绘(Repaint) —— 屏幕的一部分要重画，比如某个CSS的背景色变了。但是元素的几何大小没有变。
 
@@ -106,12 +106,12 @@ Reflow的成本比Repaint的成本高得多的多。DOM Tree里的每个结点�
 
 每改一次样式，它就reflow或repaint一次。一般来说，浏览器会把这样的操作积攒一批，然后做一次reflow，这又叫异步reflow或增量异步reflow。但是有些情况浏览器是不会这么做的，比如：resize窗口，改变了页面默认的字体，等。对于这些操作，浏览器会马上进行reflow。
 
-##运算符
+#运算符
 
 <,>,<=,>=的比较规则
 所有比较运算符都支持任意类型，但是比较只支持数字和字符串
 
-##cookie sessionstorage localstorage
+#cookie sessionstorage localstorage
 
 存储有XSS注入的风险,不要存储系统中的敏感数据
 
@@ -137,7 +137,7 @@ localStorage/sessionStorage:
 
 源生接口可以接受，亦可再次封装来对Object和Array有更好的支持
 
-##css选择器
+#css选择器
 
 元素选择器 `*,E,#id,.class`
 
@@ -190,7 +190,7 @@ E:first-line/E::first-line  设置元素内的第一行的样式
 E::placeholder  设置元素文字占位符的样式。(一般用于input输入框)
 E::selection  设置元素被选择时的字体颜色和背景颜色
 
-##css样式权重 (0,0,0,0模式)
+#css样式权重 (0,0,0,0模式)
 
 !important>行内样式>ID选择器 > 类选择器 | 属性选择器 | 伪类选择器 > 元素选择器
 
@@ -206,7 +206,7 @@ class,属性选择器和伪类选择器, 权重:10;
 
 通配符, 权重:0;
 
-##同源策略(Same-Origin-Policy)
+#同源策略(Same-Origin-Policy)
 
 同源:
 URL由协议、域名、端口和路径组成，如果两个URL的协议、域名和端口相同，则表示他们同源。
@@ -215,7 +215,7 @@ URL由协议、域名、端口和路径组成，如果两个URL的协议、域�
 浏览器的同源策略，限制了来自不同源的"document"或脚本，对当前"document"读取或设置某些属性。 （白帽子讲web安全[1]）
 从一个域上加载的脚本不允许访问另外一个域的文档属性。
 
-##跨域解决方案
+#跨域解决方案
 
 1、 通过jsonp跨域(浏览器代实现,并且只实现get请求)
 2、 document.domain + iframe跨域（两个页面都通过js强制设置document.domain为基础主域，就实现了同域）
@@ -227,7 +227,7 @@ URL由协议、域名、端口和路径组成，如果两个URL的协议、域�
 8、 nodejs中间件代理跨域
 9、 WebSocket协议跨域
 
-##URI、URN、URL
+#URI、URN、URL
 
 URI(Universal Resource Identifier 统一资源标志符): `http://www.123.com/index.html?a=1&b=2#c`
 
@@ -239,7 +239,7 @@ URL(Universal Resource Locator 统一资源定位符): `http://www.123.com/index
 
 语法`<scheme>://<user>:<password>@<host>:<port>/<path>;<params>?<query>#<fragment>`
 
-##获取内联样式
+#获取内联样式
 
 currentStyle属性和getComputedStyle属性不能设置属性,只能获取
 
@@ -253,7 +253,7 @@ getComputedStyle:该属性是兼容火狐谷歌,不兼容IE
 
 在IE中获取到的颜色是16进制的,在火狐谷歌中获取的颜色是rgb模式的
 
-##事件
+#事件
 
 事件模型: 捕获、冒泡
 
@@ -304,7 +304,7 @@ var event = new Event('custome');
 dom.addEventListener('custome', funcion () {});
 dom.dispatchEvent(event);
 
-##防抖与节流
+#防抖与节流
 
 想象每天上班大厦底下的电梯。把电梯完成一次运送，类比为一次函数的执行和响应。假设电梯有两种运行策略 throttle 和 debounce ，超时设定为15秒，不考虑容量限制。
 
@@ -346,13 +346,13 @@ let debounce = (func, wait) => {
     };
 };
 
-##AMD和CMD规范的区别
+#AMD和CMD规范的区别
 
 AMD在加载模块完成后会立即执行该模块，所有的模块都加载完成后执行require方法中的回调函数，执行主逻辑，这样的效果就是依赖模块的执行顺序和书写顺序不一定一致，看网速，谁先下载下来，谁先执行，但是我们的主逻辑一定是在所有的依赖模块都被加载完成后才执行。
 
 CMD加载完某个模块的时候并不执行，只是把它们下载下来而已，在所有的模块下载完成后，当使用require请求某个模块的时候，才执行对应的模块。
 
-##CommonJS
+#CommonJS
 
 CommonJS 是以在浏览器环境之外构建 JavaScript 生态系统为目标而产生的项目，比如在服务器和桌面环境中。
 出发点是为了解决 JavaScript 的痛点：
@@ -372,7 +372,7 @@ CommonJS 模块的特点如下:
 CommonJS 规范本身涵盖了模块、二进制、Buffer、文件系统、包管理等内容，而 Node 正是借鉴了 CommonJS 规范的模块系统，自身实现了一套非常易用的模块系统。
 CommonJS 对模块的定义可分为三部分：模块引用（require）、模块定义（exports、module.exports）、模块标识（require参数）。
 
-##Node中的模块类型
+#Node中的模块类型
 
 核心模块:
 
@@ -386,13 +386,13 @@ native 模块：lib 目录下的模块，部分 native 模块底层调用了 bui
 执行 node index.js
 大概执行流程是 /src/node_main.cc --> /src/node.cc --> 执行node::LoadEnvironment()
 
-##生产环境与开发环境之间的代码区别
+#生产环境与开发环境之间的代码区别
 
 开发环境：开发环境时程序猿们专门用于开发的服务器，配置可以比较随意，为了开发调试方便，一般打开全部错误报告和测试工具，是最基础的环境。开发环境的分支，一般是feature分支。
 测试环境：一般是克隆一份生产环境的配置，一个程序在测试环境工作不正常，那么肯定不能把它发布到生产服务器上，是开发环境到生产环境的过度环境。测试环境的分支一般是develop分支，部署到公司私有的服务器或者局域网服务器上，主要用于测试是否存在bug，一般会不让用户和其他人看到，并且测试环境会尽量与生产环境相似。
 生产环境： 生产环境是指正式提供对外服务的，一般会关掉错误报告，打开错误日志，是最重要的环境。部署分支一般为master分支。
 
-##devDependencies和dependencies区别
+#devDependencies和dependencies区别
 
 使用 --save-dev 安装的 插件，被写入到 devDependencies 域里面去，而使用 --save 安装的插件，则是被写入到 dependencies 区块里面去。
 
@@ -402,7 +402,7 @@ devDependencies  里面的插件只用于开发环境，不用于生产环境�
 
 而我们使用的一些构建工具比如glup、webpack这些只是在开发中使用的包，上线以后就和他们没关系了，所以将它写入devDependencies。
 
-##模块化
+#模块化
 
 为什么需要模块化: 前端开发和其他开发工作的主要区别，首先是前端是基于多语言、多层次的编码和组织工作，其次前端产品的交付是基于浏览器，这些资源是通过增量加载的方式运行到浏览器端，如何在开发环境组织好这些碎片化的代码和资源，并且保证他们在浏览器端快速、优雅的加载和更新，就需要一个模块化系统，这个理想中的模块化系统是前端工程师多年来一直探索的难题。
 
@@ -418,7 +418,7 @@ devDependencies  里面的插件只用于开发环境，不用于生产环境�
 
 模块化是一种分治的思想，通过分解复杂系统为独立的模块实现细粒度的精细控制，对于复杂系统的维护和管理十分有益。模块化也是组件化的基石，是构成现在色彩斑斓的前端世界的前提条件。
 
-##FileReader
+#FileReader
 
 FileReader共有4种读取方法：
 1.readAsArrayBuffer(file)：将文件读取为ArrayBuffer。
@@ -434,7 +434,7 @@ FileReader对象在读取文件后，还需要进行处理。为了不阻塞当�
 5.onloadstart：文件开始读取时触发
 6.onprogress：当文件读取时，周期性地触发
 
-##ES5
+#ES5
 
 1.strict模式
 严格模式，限制一些用法，'use strict';
@@ -457,11 +457,11 @@ Object.preventExtensions / Object.isExtensible
 Object.seal / Object.isSealed
 Object.freeze / Object.isFrozen
 
-##ES6特性
+#ES6特性
 
 let, const, class, extends, super, arrow functions, template string, destructuring, default, rest arguments
 
-##nginx
+#nginx
 
 nginx -s signal
 
@@ -472,7 +472,7 @@ quit — graceful shutdown
 reload — reloading the configuration file
 reopen — reopening the log files
 
-##vue懒路由(动态组件)
+#vue懒路由(动态组件)
 
 动态加载组件的四种方式：
 1、使用import导入组件，可以获取到组件
@@ -507,9 +507,9 @@ var route={
     }
 }
 
-## Virtual DOM的理解
+# Virtual DOM的理解
 
-## webpack 
+# webpack 
 
 配置 Webpack 的方式有如下两种：
 1、根目录配置 ebpack.config
@@ -548,7 +548,7 @@ module.exports = {
 
 webpack --context 来设置 context
 
-###Entry
+##Entry
 
 string './app/entry' 入口模块的文件路径，可以是相对路径
 array  ['./app/entryl',' ./app/entry2'] 入口模块的文件路径，可以是相对路
@@ -587,7 +587,7 @@ entry: () => {
   };
 };
 
-###Output 
+##Output 
 
 filename: 
 output.filename 配置输出文件的名称，为 string 类型。如果只有一个输出文件，则
@@ -606,7 +606,7 @@ hash 和 chunkhash 的长度是可指定的，[hash:8] 代表8位 Hash 值，默
 
 注意， xtractTextWebpackPlugin 插件使用 contenthash 而不是 chunkhash 来代表哈希值，原因在于 ExtractTextWebpackPlugin 提取出来的内容是代码内容本身，而不是由一组模块组成的 Chunk 。
 
-##webpack loader 执行顺序
+#webpack loader 执行顺序
 
 在 webpack 中每个资源都会有个 request，这个 request 类似于在 require('babel-loader?plugins[]=transform-es2015-arrow-functions!!script-loader!./a'); 中的 babel-loader?plugins[]=transform-es2015-arrow-functions!!script-loader!./a，只是它会把每个 module 都 require.resolve 一下成绝对路径。参考 loader-api/this.request。loader 的执行顺序完全是按照 request 的顺序来执行的，先从左到右 pitch，然后再从右到左 transform。所以 loader 的执行顺序关键就是看 request 是如何生成的。
 
@@ -622,7 +622,7 @@ module.rules 会先对该资源文件的所有符合条件的 loader 进行排�
 ** 在配置文件 module.rules 中定义的 loader 的 request** +
 resource
 
-##transform与margin
+#transform与margin
 
 transform是通过创建一个RenderLayers合成层，拥有独立的GraphicsLayers。每一个GraphicsLayers都有一个Graphics Context，其对应的RenderLayers会paint进Graphics Context中。合成器（Compositor）最终会负责将由Graphics Context输出的位图合并成最终屏幕展示的图案。
 
