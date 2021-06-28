@@ -1,0 +1,30 @@
+.tiny-player {
+    &.tiny-notice-show .tiny-notice {
+        display: block;
+    }
+
+    .tiny-notice {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        line-height: 14px;
+        z-index: 5;
+        transform: translateZ(9rem);
+        box-sizing: border-box;
+        pointer-events: none;
+
+        .tiny-notice-inner {
+            padding: 5px 10px;
+            color: #fff;
+            border-radius: 3px;
+            background: rgba(0, 0, 0, 0.6);
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+}
