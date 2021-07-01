@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- dns预解析 -->
+    <!-- <meta http-equiv="x-dns-prefetch-control" content="on"> -->
+    <!-- <link rel='dns-prefetch' href='http://127.0.0.1'> -->
+    <!-- preload不会阻塞html解析 -->
+    <link rel="preload" href="/load1" as="script">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/load">
+    <!-- <style>
+        div {
+            height: 1000px;
+        }
+    </style> -->
+</head>
+<body>
+    <div>hello</div>
+    <script src="/load1" defer></script>
+    <script src="/load2" defer></script>
+    <div>hello</div>
+    <script>
+        window.onload = () => {
+            console.log('onload', Date.now())
+        }
+        document.addEventListener('DOMContentLoaded',()=>console.log('DOMContentLoaded', Date.now()));
+    </script>
+</body>
+</html>
