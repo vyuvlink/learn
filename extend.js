@@ -339,3 +339,74 @@ function getRandom(min, max) {
 function getAngle(r) {
 	return r / 180 * Math.PI
 }
+
+const getAddrData = (p, s, q) => {
+	let si = 0, qi = 0, pi = 0;
+
+	let id = q[0].id.slice(0, 4)
+	let ids = s[0].id.slice(0, 2)
+	const arr = [[]]
+	const brr = [[]]
+	const o = {}
+
+	const run = () => {
+		const pid = s[pi].id.slice(0, 2)
+		const sid = s[pi].id.slice(0, 4)
+
+		if ( ids !== pid ) {
+			ids = s[pi].id.slice(0, 2)
+			brr[++qi] = []
+		}
+
+		const obj = {
+			label: s[pi].fullname,
+			value: s[pi].id,
+			children: []
+		}
+
+		if ( !o[sid] ) {
+			o[sid] = obj
+		}
+
+		brr[qi].push(obj)
+
+		pi++;
+	}
+
+	while ( ids < 14 ) {
+		run()
+	}
+
+	q.forEach((i) => {
+		const qid = i.id.slice(0, 4)
+
+		if ( pi < s.length ) {
+			run()
+		}
+
+		if ( id !== qid ) {
+			if ( o[id] ) {
+				o[id].children = arr[si]
+			}
+
+			id = i.id.slice(0, 4)
+			arr[++si] = []
+		}
+
+		arr[si].push({
+			label: i.fullname, 
+			value: i.id
+		})
+	});
+
+	return p.map((i, n)=>({
+		label: i.name, 
+		value: i.id, 
+		children: brr[n], 
+		children: brr[n] && brr[n][0].value.slice(-2) > 0 ? [{
+			label: i.name, 
+			value: String(+i.id + 100),
+			children: brr[n]
+		}] : brr[n]
+	}))
+}
