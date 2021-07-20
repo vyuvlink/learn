@@ -410,3 +410,34 @@ const getAddrData = (p, s, q) => {
 		}] : brr[n]
 	}))
 }
+
+function initScrollingfonts() {
+  if ( state.scrollingfonts.length > 1 ) {
+    let height = Math.floor(0.6 * root.remToPxRate),
+        elms = scrollingfontsElm.value,
+        len = state.scrollingfonts.length + 1,
+        isLast = false,
+        speed = 2000,
+        slidingSpeed = 500;
+
+    scrollingfontsElm.value.parentNode.style['height'] = `${ height }px`;
+    scrollingfontsElm.value.parentNode.style['line-height'] = `${ height }px`;
+
+    clearTimeout(state.scrollingfontsTimerId);
+    const swiperLoop = (index) => {
+      state.scrollingfontsTimerId = setTimeout(()=>{
+        elms.style.transitionDuration = index == 0 ? '0ms' : `${slidingSpeed}ms`;
+        elms.style.transform = `translate3D(0, ${-height * index}px, 0)`;
+        if ( index < len - 1 ) {
+          isLast = false;
+          swiperLoop(index+1);
+        } else {
+          isLast = true;
+          swiperLoop(0);
+        }
+      }, index == 1 || isLast ? speed/2 : speed);
+    }
+
+    swiperLoop(0);
+  }
+}
