@@ -441,3 +441,41 @@ function initScrollingfonts() {
     swiperLoop(0);
   }
 }
+
+const useBullets = () => {
+	let timerId = 0
+
+	const clearBulletTime = clearInterval(timerId)
+
+	const Bullets = (props) => {
+		const { min = 20, max = 280, block = 20, num = 5, time = 1000, data = [] } = props
+		const bulletRef = useRef(null)
+		const d = (max - min) / num, limit = 2500, arr = [...Array(num)].fill(0)
+		const datas = num > data.length ? data.concat([...Array(num-data.length)].map(i=>data[Math.floor(data.length * Math.random())])) : data
+
+		useEffect(()=>{
+			const els = [...bulletRef.current.children]
+			timerId = setInterval(()=>{
+				els.forEach(el=>{
+					const elw = (el ? el.offsetWidth : 0)
+					const w = parseInt(el.style.transform.match(/\d+/)) || 0
+					if ( w < window.innerWidth + elw ) {
+						el.style.transform = `translateX(-${w+1}px)`
+					} else {
+						el.style.top = min + (max - block) * Math.random() + 'px'
+						el.style.transform = null
+					}
+				})
+			}, 15)
+		}, [])
+
+		return (
+			<div className="bullet-wrap" ref={bulletRef}>
+				{datas.map((i, n)=><div className='item'>{i}</div>)}
+			</div>
+		)
+
+	}
+
+	return { Bullets, clearBulletTime }
+}
