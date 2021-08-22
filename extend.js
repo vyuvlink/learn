@@ -480,144 +480,81 @@ const useBullets = () => {
 	return { Bullets, clearBulletTime }
 }
 
-import React, { useState } from 'react';
-import { Button } from 'antd';
-import 'antd/dist/antd.css';
-import './index.scss'
-
-export default function useCommomModel() {
-
-  const [visible, setVisible] = useState(true)
-  const toggleCommomModel = (flag) => setVisible(flag)
-
-  const CommomModel = (props) => {
-    const { className, el, title, innrerProps, noTop, bg, lockModel, beforeFn, afterFn } = props
-    const trim = (str) => str.trim()
-    const fn = (val) => () => val
-    const [useClassNmae, useInnerClassName] = [`commom-model ${className || ''}`, `inner ${innrerProps.className || ''}`].map(trim)
-    const useInnerProps = Object.keys(innrerProps).filter(i => !['width'].includes(i)).reduce((collection, cur) => (collection[cur] = innrerProps[cur], collection), {})
-    const useBeforeFn = beforeFn && typeof beforeFn === 'function' && beforeFn || fn(beforeFn)
-    const useAfterFn = afterFn && typeof afterFn === 'function' && afterFn || fn(afterFn)
-
-    const handClick = (flag) => {
-      const beforeRes = useBeforeFn(flag)
-      const bool = flag === lockModel && beforeRes
-      const runAfter = () => (useAfterFn(flag), setVisible(false))
-      if (bool) {
-        if (beforeRes.then) {
-          beforeRes.then(runAfter)
-        }
-        return
-      }
-      runAfter()
-    }
-
-    return (
-      visible && <div className={useClassNmae} style={{ backgroundColor: bg || '' }}>
-        <div {...useInnerProps} className={useInnerClassName}>
-          {!noTop && <div className="top">
-            <div className="title">{title || ''}</div>
-            <div className="icon-close" onClick={() => setVisible(false)}></div>
-          </div>}
-          <div className="middle">
-            {el}
-          </div>
-          <div className="bottom">
-            <Button onClick={() => handClick(0)}>取消</Button>
-            <Button type="primary" onClick={() => handClick(1)}>确认</Button>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  return { CommomModel, toggleCommomModel, CommomModelVisible: visible }
-}
-
-const [data, setData] = useState([])
-
-const removeItem = (record) => {
-	const index = data.findIndex(i => i.key === record.key)
-	if (~index) {
-		setData(data.filter((i, n) => n !== index))
+const M1 = useCallback(() => {
+	const { CommomModel: CommomModel2, toggleCommomModel: toggleCommomModel2, CommomModelVisible: CommomModelVisible2 } = useCommomModel2()
+	const [data, setData] = useState(d)
+	const removeItem = (record) => {
+		const index = data.findIndex(i => i.key === record.key)
+		if (~index) {
+			setData(data.filter((i, n) => n !== index))
+		}
 	}
-}
 
-const { CommomModel, toggleCommomModel, CommomModelVisible } = useCommomModel()
-const { CommomModel: CommomModel2, toggleCommomModel: toggleCommomModel2, CommomModelVisible: CommomModelVisible2 } = useCommomModel()
+	useEffect(() => {
+		setD(data)
+	}, [data])
 
-const columns = [
-	{
-		title: '序号',
-		dataIndex: 'no',
-		key: 'no',
-		render: (text, record, index) => index + 1
-	},
-	{
-		title: '用户昵称',
-		dataIndex: 'nickname',
-		key: 'nickname',
-	},
-	{
-		title: '砍得金额',
-		dataIndex: 'money',
-		key: 'money',
-	},
-	{
-		title: '操作',
-		dataIndex: 'operation',
-		key: 'operation',
-		render: (text, record) => <div onClick={() => removeItem(record)}>删除</div>,
-	},
-];
+	const columns = [
+		{
+			title: '序号',
+			dataIndex: 'no',
+			key: 'no',
+			render: (text, record, index) => index + 1
+		},
+		{
+			title: '昵称',
+			dataIndex: 'nickname',
+			key: 'nickname',
+		},
+		{
+			title: '金额',
+			dataIndex: 'money',
+			key: 'money',
+		},
+		{
+			title: '操作',
+			dataIndex: 'operation',
+			key: 'operation',
+			render: (text, record) => <div onClick={() => removeItem(record)}>删除</div>,
+		},
+	];
 
-const M1 = () => {
-	return (<>
-		<CommomModel
-			title="标题"
-			innrerProps={{ style: { width: '705px' } }}
+	const M2 = () => {
+		const [form] = Form.useForm();
+		const { validateFields, getFieldsValue, setFieldsValue } = form
+		const onChange = (value) => setFieldsValue(value)
+
+		return <CommomModel2
+			lockModel={1}
+			beforeFn={() => validateFields()}
+			afterFn={(flag) => {
+				if (flag === 1) {
+					setData(data.concat({ key: data.length + 1, ...getFieldsValue() }))
+				}
+			}}
+			innrerProps={{ width: 300, closable: false }}
 			el={
-				<div style={{ width: '100%' }}>
-					<Table dataSource={data} columns={columns} pagination={false} />
-					<div style={{ display: 'flex', justifyContent: 'center' }}>
-						<Button type='link' disabled={data.length > 4} onClick={() => toggleCommomModel2(!CommomModelVisible2)} >立即添加</Button>
-					</div>
-				</div>
+				<Form form={form} onValuesChange={onChange}>
+					{FormList.map(i => <Form.Item {...i}><Input /></Form.Item>)}
+
+				</Form>
 			}
 		/>
-		<div onClick={() => toggleCommomModel(!CommomModelVisible)}>toggleCommomModel</div>
-	</>)
-}
+	}
 
-const M2 = () => {
-	const [form] = Form.useForm();
-	const { validateFields, getFieldsValue, setFieldsValue } = form
-	const onChange = (value) => setFieldsValue(value)
-
-	const FormList = [{
-		key: 1,
-		label: "用户昵称",
-		name: "nickname",
-		rules: [{ required: true, message: '请输入用户昵称' }]
-	}, {
-		key: 2,
-		label: "砍得金额",
-		name: "money",
-		rules: [{ required: true, message: '请输入砍得金额' }]
-	}]
-
-	return <CommomModel2
-		bg='rgba(0,0,0,0.1)'
-		noTop={true}
-		lockModel={1}
-		beforeFn={() => validateFields()}
-		afterFn={(flag) => flag === 1 && setData(data.concat({ key: data.length + 1, ...getFieldsValue() }))}
-		innrerProps={{ style: { width: '300px' } }}
-		el={
-			<Form form={form} onValuesChange={onChange}>
-				{FormList.map(i => <Form.Item {...i}><Input /></Form.Item>)}
-
-			</Form>
-		}
-	/>
-}
+	return <>
+		<CommomModel
+			title="标题"
+			innrerProps={{ width: 705 }}
+			el={<>
+				<Table dataSource={data} columns={columns} pagination={false} />
+				<div style={{ display: 'flex', justifyContent: 'center' }}>
+					<Button type='link' disabled={data.length > 4} onClick={() => {
+						toggleCommomModel2(!CommomModelVisible2)
+					}} >立即添加</Button>
+				</div>
+			</>}
+		/>
+		<M2 />
+	</>
+}, [CommomModelVisible])
